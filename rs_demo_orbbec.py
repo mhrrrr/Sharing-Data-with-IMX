@@ -111,14 +111,14 @@ for i in os.listdir(raw_files):
     hfov = 91 # Horizontal Field of View
     vfov = 66 # Vertical Field of View
     
-    depth_image = np.fromfile(i + ".raw", dtype=np.uint16)
+    depth_image = np.fromfile(raw_files + '/' + i, dtype=np.uint16)
 
     # Assuming you know the width and height of the image
     w = 640
     h = 400
 
     # Reshape the data
-    data = data.reshape((h, w))
+    depth_image = depth_image.reshape((h, w))
 
     vertical_angular_scale = h/vfov
     
