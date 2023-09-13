@@ -11,21 +11,6 @@ EXTEND_AREA = 5.0
 first_row = True
 
 
-def save_to_csv(angle_data, dist_data, timestamp):
-    global first_row
-    if first_row == True:
-        write_mode = 'w'
-    else:
-        write_mode = 'a'
-    with open(file_path, mode=write_mode, newline='') as csvfile:
-        writer = csv.writer(csvfile)
-        if first_row == True:
-            writer.writerow(['Timestamp'] + list(angle_data))
-            first_row = False
-        writer.writerow([timestamp] + list(dist_data))
-        csvfile.flush()
-
-
 def divide_img_blocks(img, n_blocks):
     # Dividing image into 86 sections
     vertical_split = np.array_split(img,n_blocks,axis = 1)
@@ -119,7 +104,7 @@ def plot_data(depth_image_2):
 # Configure depth and color streams
 
 file_path = "lidar_data.csv"
-raw_files = os.path.join(os.getcwd(), "depth_images")
+raw_files = os.path.join(os.getcwd(), "Sharing-Data-with-IMX/depth_images")
 
 times = []
 for i in os.listdir(raw_files):
